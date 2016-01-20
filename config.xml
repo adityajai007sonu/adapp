@@ -5,10 +5,10 @@ version="1.0.20141225"
 xmlns="http://www.w3.org/ns/widgets"
 xmlns:gap="http://phonegap.com/ns/1.0"
 >
-    <name>MADHARCHOD AD</name>
+    <name>बाल झड़ने की घरेलू उपचार</name>
     
-    <description>MADHARCHOD AD</description>
-    <author email="rjfun.mobidle@gmail.com" href="http://rjfun.githubafasf.io/">RjFuasn</author>
+    <description>बाल झड़ने की घरेलू उपचार,Hair Fall, Hair Treatment</description>
+    <author email="adityakumar.cse16@gmail.om" href="http://twitter.com/adityajai007">WebFlax</author>
     <content src="index.html" />
     <access origin="*" />
 
