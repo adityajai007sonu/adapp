@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport"
+	content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+<title>बाल झड़ने की घरेलू उपचार</title>
+<script type="text/javascript" src="cordova.js"></script>
+<style type="text/css">
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: gray;
+	color: white;
+}
+
+div#fullpage {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	border: 0px solid red;
+	text-align: center;
+	vertical-align: middle;
+}
+
+button {
+	font-size: 18px;
+}
+</style>
+</head>
+<body onload="onLoad()" onresize="onResize()">
+<script>
+    function onLoad() {
+        if(( /(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent) )) {
+            document.addEventListener('deviceready', initApp, false);
+        } else {
+            initApp();
+        }
+    }
+
+    var admobid = {};
+    if( /(android)/i.test(navigator.userAgent) ) {
+		admobid = {
+			banner: 'ca-app-pub-6869992474017983/9375997553',
+			interstitial: 'ca-app-pub-6869992474017983/1657046752'
+		};
+    } else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) {
+		admobid = {
+			banner: 'ca-app-pub-6869992474017983/4806197152',
+			interstitial: 'ca-app-pub-6869992474017983/7563979554'
+		};
+    } else {
+		admobid = {
+			banner: 'ca-app-pub-6869992474017983/8878394753',
+			interstitial: 'ca-app-pub-6869992474017983/1355127956'
+		};
+    }
+        
+    function initApp() {
+	if (! AdMob ) { alert( 'admob plugin not ready' ); return; }
+	initAd();
+        // display a banner at startup
+        createSelectedBanner();
+    }
+    function initAd(){
+        var defaultOptions = {
+            // bannerId: admobid.banner,
+            // interstitialId: admobid.interstitial,
+            // adSize: 'SMART_BANNER',
+            // width: integer, // valid when set adSize 'CUSTOM'
+            // height: integer, // valid when set adSize 'CUSTOM'
+            position: AdMob.AD_POSITION.BOTTOM_CENTER,
+            // offsetTopBar: false, // avoid overlapped by status bar, for iOS7+
+            bgColor: 'black', // color name, or '#RRGGBB'
+            // x: integer,		// valid when set position to 0 / POS_XY
+            // y: integer,		// valid when set position to 0 / POS_XY
+            isTesting: true, // set to true, to receiving test ad for testing purpose
+            // autoShow: true // auto show interstitial ad when loaded, set to false if prepare/show
+        };
+        AdMob.setOptions( defaultOptions );
+        registerAdEvents();
+    }
+    // optional, in case respond to events or handle error
+    function registerAdEvents() {
+        // new events, with variable to differentiate: adNetwork, adType, adEvent
+        document.addEventListener('onAdFailLoad', function(data){ 
+        	alert('error: ' + data.error + 
+        			', reason: ' + data.reason + 
+        			', adNetwork:' + data.adNetwork + 
+        			', adType:' + data.adType + 
+        			', adEvent:' + data.adEvent); // adType: 'banner' or 'interstitial'
+        });
+        document.addEventListener('onAdLoaded', function(data){});
+        document.addEventListener('onAdPresent', function(data){});
+        document.addEventListener('onAdLeaveApp', function(data){});
+        document.addEventListener('onAdDismiss', function(data){});
+    }
+    
+    // click button to call following functions
+    function getSelectedAdSize() {
+        var i = document.getElementById("adSize").selectedIndex;
+        var items = document.getElementById("adSize").options;
+        return items[i].value;
+    }
+    function getSelectedPosition() {
+        var i = document.getElementById("adPosition").selectedIndex;
+        var items = document.getElementById("adPosition").options;
+        return parseInt( items[i].value );
+    }
+    function createSelectedBanner() {
+    	var overlap = document.getElementById('overlap').checked;
+        var offsetTopBar = document.getElementById('offsetTopBar').checked;
+        AdMob.createBanner( {adId:admobid.banner, overlap:overlap, offsetTopBar:offsetTopBar, adSize: getSelectedAdSize(), position:getSelectedPosition()} );
+    }
+    function createBannerOfGivenSize() {
+        var w = document.getElementById('w').value;
+        var h = document.getElementById('h').value;
+        
+        AdMob.createBanner( {adId:admobid.banner,
+                           adSize:'CUSTOM', width:w, height:h,
+                           position:getSelectedPosition()} );
+    }
+    function showBannerAtSelectedPosition() {
+        AdMob.showBanner( getSelectedPosition() );
+    }
+    function showBannerAtGivenXY() {
+        var x = document.getElementById('x').value;
+        var y = document.getElementById('y').value;
+        AdMob.showBannerAtXY(x, y);
+    }
+    function prepareInterstitial() {
+        var autoshow = document.getElementById('autoshow').checked;
+        AdMob.prepareInterstitial({adId:admobid.interstitial, autoShow:autoshow});
+    }
+    function onResize(){
+        var s = document.getElementById('sizeinfo');
+        s.innerHTML = "web view: " + window.innerWidth + " x " + window.innerHeight;
+    }
+</script>
+	<div id="fullpage">
+		<p>बाल झड़ने की घरेलू उपचार</p>
+		<div class="photo_story_desc">बालों के झड़ने की समस्या पुरुषों में तेजी से बड़ती जा रही है, इसके कई कारण हो सकते हैं, लेकिन इस समस्या से फ्लेक्स सीड, एलो वेरा, मेथी पेस्ट आदि घरेलू उपचारों को अपनाकर बचा जा सकता है। </div>
+<div class="photo_story_wrapper">
+<ul class="photo_slide">
+<li class="">
+<div class="title">
+<span>1</span>
+<h2>पुरुषों में बाल झड़ने की समस्या</h2>
+</div>
+<p></p><p>बालों के झड़ने की समस्या पुरुषों में आम होती जा रही है। इसके पीछे कई कारण हो सकते हैं। महिलाओं से उलट पुरुषों में फीमेल हार्मोन एस्ट्रोजन नहीं पाया जाता, जो बालों को झड़ने से बचाने में सुरक्षा करता है। पुरुषों के हेयर फलिकल के गायब होने में पुरुष हार्मोन टेस्टोस्टेरॉन की भी अहम भूमिका होती है। बाल झड़ने का एक मुख्य कारण एधिक तनाव से भरा जीवन भी है। गंजेपन को चिकित्सकीय भाषा में एंड्रोजेनेटिक एलोपेसिया कहते हैं। हालांकि कुछ घरेलू उपचारों की मदद से पुरुष बाल झड़ने की समस्या से बच सकते हैं। चलिये जानें कौंन से हैं वे उपचार.... <br>Image courtesy: © Getty Images</p><p></p>
+<div class="imgb">
+<a target="_blank" href="http://pinterest.com/pin/create/button/?url=http://www.onlymyhealth.com/health-slideshow/home-remedies-for-hair-fall-in-men-in-hindi-1410001578%0A                .html&amp;media=http://images.onlymyhealth.com/imported/images/2014/September/06_Sep_2014/hair-loss-1.jpg&amp;description=&lt;p&gt;%E0%A4%AC%E0%A4%BE%E0%A4%B2%E0%A5%8B%E0%A4%82 %E0%A4%95%E0%A5%87 %E0%A4%9D%E0%A4%A1%E0%A4%BC%E0%A4%A8%E0%A5%87 %E0%A4%95%E0%A5%80 %E0%A4%B8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%AF%E0%A4%BE %E0%A4%AA%E0%A5%81%E0%A4%B0%E0%A5%81%E0%A4%B7%E0%A5%8B%E0%A4%82 %E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%86%E0%A4%AE %E0%A4%B9%E0%A5%8B%E0%A4%A4%E0%A5%80 %E0%A4%9C%E0%A4%BE %E0%A4%B0%E0%A4%B9%E0%A5%80 %E0%A4%B9%E0%A5%88%E0%A5%A4 %E0%A4%87%E0%A4%B8%E0%A4%95%E0%A5%87 %E0%A4%AA%E0%A5%80%E0%A4%9B%E0%A5%87 %E0%A4%95%E0%A4%88 %E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A4%A3 %E0%A4%B9%E0%A5%8B %E0%A4%B8%E0%A4%95%E0%A4%A4%E0%A5%87 %E0%A4%B9%E0%A5%88%E0%A4%82%E0%A5%A4 %E0%A4%AE%E0%A4%B9%E0%A4%BF%E0%A4%B2%E0%A4%BE%E0%A4%93%E0%A4%82 %E0%A4%B8%E0%A5%87 %E0%A4%89%E0%A4%B2%E0%A4%9F %E0%A4%AA%E0%A5%81%E0%A4%B0%E0%A5%81%E0%A4%B7%E0%A5%8B%E0%A4%82 %E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%AB%E0%A5%80%E0%A4%AE%E0%A5%87%E0%A4%B2 %E0%A4%B9%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%AE%E0%A5%8B%E0%A4%A8 %E0%A4%8F%E0%A4%B8%E0%A5%8D%E0%A4%9F%E0%A5%8D%E0%A4%B0%E0%A5%8B%E0%A4%9C%E0%A4%A8 %E0%A4%A8%E0%A4%B9%E0%A5%80%E0%A4%82 %E0%A4%AA%E0%A4%BE%E0%A4%AF%E0%A4%BE %E0%A4%9C%E0%A4%BE%E0%A4%A4%E0%A4%BE, %E0%A4%9C%E0%A5%8B %E0%A4%AC%E0%A4%BE%E0%A4%B2%E0%A5%8B%E0%A4%82 %E0%A4%95%E0%A5%8B %E0%A4%9D%E0%A4%A1%E0%A4%BC%E0%A4%A8%E0%A5%87 %E0%A4%B8%E0%A5%87 %E0%A4%AC%E0%A4%9A%E0%A4%BE%E0%A4%A8%E0%A5%87 %E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%B8%E0%A5%81%E0%A4%B0%E0%A4%95%E0%A5%8D%E0%A4%B7%E0%A4%BE %E0%A4%95%E0%A4%B0%E0%A4%A4%E0%A4%BE %E0%A4%B9%E0%A5%88%E0%A5%A4 %E0%A4%AA%E0%A5%81%E0%A4%B0%E0%A5%81%E0%A4%B7%E0%A5%8B%E0%A4%82 %E0%A4%95%E0%A5%87 %E0%A4%B9%E0%A5%87%E0%A4%AF%E0%A4%B0 %E0%A4%AB%E0%A4%B2%E0%A4%BF%E0%A4%95%E0%A4%B2 %E0%A4%95%E0%A5%87 %E0%A4%97%E0%A4%BE%E0%A4%AF%E0%A4%AC %E0%A4%B9%E0%A5%8B%E0%A4%A8%E0%A5%87 %E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%AA%E0%A5%81%E0%A4%B0%E0%A5%81%E0%A4%B7 %E0%A4%B9%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%AE%E0%A5%8B%E0%A4%A8 %E0%A4%9F%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%E0%A5%8B%E0%A4%B8%E0%A5%8D%E0%A4%9F%E0%A5%87%E0%A4%B0%E0%A5%89%E0%A4%A8 %E0%A4%95%E0%A5%80 %E0%A4%AD%E0%A5%80 %E0%A4%85%E0%A4%B9%E0%A4%AE %E0%A4%AD%E0%A5%82%E0%A4%AE%E0%A4%BF%E0%A4%95%E0%A4%BE %E0%A4%B9%E0%A5%8B%E0%A4%A4%E0%A5%80 %E0%A4%B9%E0%A5%88%E0%A5%A4 %E0%A4%AC%E0%A4%BE%E0%A4%B2 %E0%A4%9D%E0%A4%A1%E0%A4%BC%E0%A4%A8%E0%A5%87 %E0%A4%95%E0%A4%BE %E0%A4%8F%E0%A4%95 %E0%A4%AE%E0%A5%81%E0%A4%96%E0%A5%8D%E0%A4%AF %E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A4%A3 %E0%A4%8F%E0%A4%A7%E0%A4%BF%E0%A4%95 %E0%A4%A4%E0%A4%A8%E0%A4%BE%E0%A4%B5 %E0%A4%B8%E0%A5%87 %E0%A4%AD%E0%A4%B0%E0%A4%BE %E0%A4%9C%E0%A5%80%E0%A4%B5%E0%A4%A8 %E0%A4%AD%E0%A5%80 %E0%A4%B9%E0%A5%88%E0%A5%A4 %E0%A4%97%E0%A4%82%E0%A4%9C%E0%A5%87%E0%A4%AA%E0%A4%A8 %E0%A4%95%E0%A5%8B %E0%A4%9A%E0%A4%BF%E0%A4%95%E0%A4%BF%E0%A4%A4%E0%A5%8D%E0%A4%B8%E0%A4%95%E0%A5%80%E0%A4%AF %E0%A4%AD%E0%A4%BE%E0%A4%B7%E0%A4%BE %E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%8F%E0%A4%82%E0%A4%A1%E0%A5%8D%E0%A4%B0%E0%A5%8B%E0%A4%9C%E0%A5%87%E0%A4%A8%E0%A5%87%E0%A4%9F%E0%A4%BF%E0%A4%95 %E0%A4%8F%E0%A4%B2%E0%A5%8B%E0%A4%AA%E0%A5%87%E0%A4%B8%E0%A4%BF%E0%A4%AF%E0%A4%BE %E0%A4%95%E0%A4%B9%E0%A4%A4%E0%A5%87 %E0%A4%B9%E0%A5%88%E0%A4%82%E0%A5%A4 %E0%A4%B9%E0%A4%BE%E0%A4%B2%E0%A4%BE%E0%A4%82%E0%A4%95%E0%A4%BF %E0%A4%95%E0%A5%81%E0%A4%9B %E0%A4%98%E0%A4%B0%E0%A5%87%E0%A4%B2%E0%A5%82 %E0%A4%89%E0%A4%AA%E0%A4%9A%E0%A4%BE%E0%A4%B0%E0%A5%8B%E0%A4%82 %E0%A4%95%E0%A5%80 %E0%A4%AE%E0%A4%A6%E0%A4%A6 %E0%A4%B8%E0%A5%87 %E0%A4%AA%E0%A5%81%E0%A4%B0%E0%A5%81%E0%A4%B7 %E0%A4%AC%E0%A4%BE%E0%A4%B2 %E0%A4%9D%E0%A4%A1%E0%A4%BC%E0%A4%A8%E0%A5%87 %E0%A4%95%E0%A5%80 %E0%A4%B8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%AF%E0%A4%BE %E0%A4%B8%E0%A5%87 %E0%A4%AC%E0%A4%9A %E0%A4%B8%E0%A4%95%E0%A4%A4%E0%A5%87 %E0%A4%B9%E0%A5%88%E0%A4%82%E0%A5%A4 %E0%A4%9A%E0%A4%B2%E0%A4%BF%E0%A4%AF%E0%A5%87 %E0%A4%9C%E0%A4%BE%E0%A4%A8%E0%A5%87%E0%A4%82 %E0%A4%95%E0%A5%8C%E0%A4%82%E0%A4%A8 %E0%A4%B8%E0%A5%87 %E0%A4%B9%E0%A5%88%E0%A4%82 %E0%A4%B5%E0%A5%87 %E0%A4%89%E0%A4%AA%E0%A4%9A%E0%A4%BE%E0%A4%B0.... &lt;br /&gt;Image courtesy: &amp;copy; Getty Images&lt;/p&gt;">pinterest</a><img class="lazy" alt="पुरुषों में बाल झड़ने की समस्या" src="http://images.onlymyhealth.com/imported/images/2014/September/06_Sep_2014/hair-loss-1.jpg"></div>
+<div id="text_ad_646x70"><div id="text_ad_646x70_wrapper" style="display: block;">
+<script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async=""></script><ins data-ad-slot="2315271231" data-ad-client="ca-pub-2286217987553034" style="display:inline-block;width:646px;height:70px" class="adsbygoogle"></ins><script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div></div>
+</li>
+<li class="">
+<div class="title">
+<span>2</span>
+<h2>टेस्टोस्टेरॉन और पुरुषों में गंजापन</h2>
+</div>
+<p></p><p>कई आधुनिक शोधों से यह बात सामने आई है कि टेस्टोस्टेरॉन और गंजेपन में संबंध होता है। गंजे पुरुषों में सामान्यत: टेस्टोस्टेरॉन का स्तर अधिक होता है। हालांकि महिलाओं में भी टेस्टोस्टेरॉन हार्मोन पाया जाता है, लेकिन उनमें इसका स्तर कम होता है, इसलिये उनमें गंजेपन की समस्या भी पुरुषों के मुकाबले कम होती है। <br>Image courtesy: © Getty Images</p><p></p>
+<div class="imgb">
+<a target="_blank" href="http://pinterest.com/pin/create/button/?url=http://www.onlymyhealth.com/health-slideshow/home-remedies-for-hair-fall-in-men-in-hindi-1410001578%0A                  -2%0A                .html&amp;media=http://images.onlymyhealth.com/imported/images/2014/September/06_Sep_2014/hair-loss-2.jpg&amp;description=&lt;p&gt;%E0%A4%95%E0%A4%88 %E0%A4%86%E0%A4%A7%E0%A5%81%E0%A4%A8%E0%A4%BF%E0%A4%95 %E0%A4%B6%E0%A5%8B%E0%A4%A7%E0%A5%8B%E0%A4%82 %E0%A4%B8%E0%A5%87 %E0%A4%AF%E0%A4%B9 %E0%A4%AC%E0%A4%BE%E0%A4%A4 %E0%A4%B8%E0%A4%BE%E0%A4%AE%E0%A4%A8%E0%A5%87 %E0%A4%86%E0%A4%88 %E0%A4%B9%E0%A5%88 %E0%A4%95%E0%A4%BF %E0%A4%9F%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%E0%A5%8B%E0%A4%B8%E0%A5%8D%E0%A4%9F%E0%A5%87%E0%A4%B0%E0%A5%89%E0%A4%A8 %E0%A4%94%E0%A4%B0 %E0%A4%97%E0%A4%82%E0%A4%9C%E0%A5%87%E0%A4%AA%E0%A4%A8 %E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%B8%E0%A4%82%E0%A4%AC%E0%A4%82%E0%A4%A7 %E0%A4%B9%E0%A5%8B%E0%A4%A4%E0%A4%BE %E0%A4%B9%E0%A5%88%E0%A5%A4 %E0%A4%97%E0%A4%82%E0%A4%9C%E0%A5%87 %E0%A4%AA%E0%A5%81%E0%A4%B0%E0%A5%81%E0%A4%B7%E0%A5%8B%E0%A4%82 %E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%B8%E0%A4%BE%E0%A4%AE%E0%A4%BE%E0%A4%A8%E0%A5%8D%E0%A4%AF%E0%A4%A4: %E0%A4%9F%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%E0%A5%8B%E0%A4%B8%E0%A5%8D%E0%A4%9F%E0%A5%87%E0%A4%B0%E0%A5%89%E0%A4%A8 %E0%A4%95%E0%A4%BE %E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A4%B0 %E0%A4%85%E0%A4%A7%E0%A4%BF%E0%A4%95 %E0%A4%B9%E0%A5%8B%E0%A4%A4%E0%A4%BE %E0%A4%B9%E0%A5%88%E0%A5%A4 %E0%A4%B9%E0%A4%BE%E0%A4%B2%E0%A4%BE%E0%A4%82%E0%A4%95%E0%A4%BF %E0%A4%AE%E0%A4%B9%E0%A4%BF%E0%A4%B2%E0%A4%BE%E0%A4%93%E0%A4%82 %E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%AD%E0%A5%80 %E0%A4%9F%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F%E0%A5%8B%E0%A4%B8%E0%A5%8D%E0%A4%9F%E0%A5%87%E0%A4%B0%E0%A5%89%E0%A4%A8 %E0%A4%B9%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%AE%E0%A5%8B%E0%A4%A8 %E0%A4%AA%E0%A4%BE%E0%A4%AF%E0%A4%BE %E0%A4%9C%E0%A4%BE%E0%A4%A4%E0%A4%BE %E0%A4%B9%E0%A5%88, %E0%A4%B2%E0%A5%87%E0%A4%95%E0%A4%BF%E0%A4%A8 %E0%A4%89%E0%A4%A8%E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%87%E0%A4%B8%E0%A4%95%E0%A4%BE %E0%A4%B8%E0%A5%8D%E0%A4%A4%E0%A4%B0 %E0%A4%95%E0%A4%AE %E0%A4%B9%E0%A5%8B%E0%A4%A4%E0%A4%BE %E0%A4%B9%E0%A5%88, %E0%A4%87%E0%A4%B8%E0%A4%B2%E0%A4%BF%E0%A4%AF%E0%A5%87 %E0%A4%89%E0%A4%A8%E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%97%E0%A4%82%E0%A4%9C%E0%A5%87%E0%A4%AA%E0%A4%A8 %E0%A4%95%E0%A5%80 %E0%A4%B8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%AF%E0%A4%BE %E0%A4%AD%E0%A5%80 %E0%A4%AA%E0%A5%81%E0%A4%B0%E0%A5%81%E0%A4%B7%E0%A5%8B%E0%A4%82 %E0%A4%95%E0%A5%87 %E0%A4%AE%E0%A5%81%E0%A4%95%E0%A4%BE%E0%A4%AC%E0%A4%B2%E0%A5%87 %E0%A4%95%E0%A4%AE %E0%A4%B9%E0%A5%8B%E0%A4%A4%E0%A5%80 %E0%A4%B9%E0%A5%88%E0%A5%A4 &lt;br /&gt;Image courtesy: &amp;copy; Getty Images&lt;/p&gt;">pinterest</a><img class="lazy" alt="टेस्टोस्टेरॉन और पुरुषों में गंजापन" src="http://images.onlymyhealth.com/imported/images/2014/September/06_Sep_2014/hair-loss-2.jpg"></div>
+</li>
+<li class="">
+<div class="title">
+<span>3</span>
+<h2>दही और काली मिर्च</h2>
+</div>
+<p></p><p>बाल झड़ने की समस्या को रोकने में यह उपाय बहुत कारगर साबित होगा। तीन चम्मच दही के साथ काली मिर्च पाउडर के 2 चम्मच को मिलाएं। मिश्रण को अच्छे से मिलाने के बाद इस पेस्ट की सिर पर हल्के से मसाज करें और फिर एक घंटे छोड़ने के बाद शैम्पू कर लें। <br>Image courtesy: © Getty Images</p><p></p>
+<div class="imgb">
+<a target="_blank" href="http://pinterest.com/pin/create/button/?url=http://www.onlymyhealth.com/health-slideshow/home-remedies-for-hair-fall-in-men-in-hindi-1410001578%0A                  -3%0A                .html&amp;media=http://images.onlymyhealth.com/imported/images/2014/September/06_Sep_2014/twacha-aur-baalo-ke-liye-dahi-650x433.jpg&amp;description=&lt;p&gt;%E0%A4%AC%E0%A4%BE%E0%A4%B2 %E0%A4%9D%E0%A4%A1%E0%A4%BC%E0%A4%A8%E0%A5%87 %E0%A4%95%E0%A5%80 %E0%A4%B8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%AF%E0%A4%BE %E0%A4%95%E0%A5%8B %E0%A4%B0%E0%A5%8B%E0%A4%95%E0%A4%A8%E0%A5%87 %E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%AF%E0%A4%B9 %E0%A4%89%E0%A4%AA%E0%A4%BE%E0%A4%AF %E0%A4%AC%E0%A4%B9%E0%A5%81%E0%A4%A4 %E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A4%97%E0%A4%B0 %E0%A4%B8%E0%A4%BE%E0%A4%AC%E0%A4%BF%E0%A4%A4 %E0%A4%B9%E0%A5%8B%E0%A4%97%E0%A4%BE%E0%A5%A4 %E0%A4%A4%E0%A5%80%E0%A4%A8 %E0%A4%9A%E0%A4%AE%E0%A5%8D%E0%A4%AE%E0%A4%9A %E0%A4%A6%E0%A4%B9%E0%A5%80 %E0%A4%95%E0%A5%87 %E0%A4%B8%E0%A4%BE%E0%A4%A5 %E0%A4%95%E0%A4%BE%E0%A4%B2%E0%A5%80 %E0%A4%AE%E0%A4%BF%E0%A4%B0%E0%A5%8D%E0%A4%9A %E0%A4%AA%E0%A4%BE%E0%A4%89%E0%A4%A1%E0%A4%B0 %E0%A4%95%E0%A5%87 2 %E0%A4%9A%E0%A4%AE%E0%A5%8D%E0%A4%AE%E0%A4%9A %E0%A4%95%E0%A5%8B %E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A4%BE%E0%A4%8F%E0%A4%82%E0%A5%A4 %E0%A4%AE%E0%A4%BF%E0%A4%B6%E0%A5%8D%E0%A4%B0%E0%A4%A3 %E0%A4%95%E0%A5%8B %E0%A4%85%E0%A4%9A%E0%A5%8D%E0%A4%9B%E0%A5%87 %E0%A4%B8%E0%A5%87 %E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A4%BE%E0%A4%A8%E0%A5%87 %E0%A4%95%E0%A5%87 %E0%A4%AC%E0%A4%BE%E0%A4%A6 %E0%A4%87%E0%A4%B8 %E0%A4%AA%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F %E0%A4%95%E0%A5%80 %E0%A4%B8%E0%A4%BF%E0%A4%B0 %E0%A4%AA%E0%A4%B0 %E0%A4%B9%E0%A4%B2%E0%A5%8D%E0%A4%95%E0%A5%87 %E0%A4%B8%E0%A5%87 %E0%A4%AE%E0%A4%B8%E0%A4%BE%E0%A4%9C %E0%A4%95%E0%A4%B0%E0%A5%87%E0%A4%82 %E0%A4%94%E0%A4%B0 %E0%A4%AB%E0%A4%BF%E0%A4%B0 %E0%A4%8F%E0%A4%95 %E0%A4%98%E0%A4%82%E0%A4%9F%E0%A5%87 %E0%A4%9B%E0%A5%8B%E0%A4%A1%E0%A4%BC%E0%A4%A8%E0%A5%87 %E0%A4%95%E0%A5%87 %E0%A4%AC%E0%A4%BE%E0%A4%A6 %E0%A4%B6%E0%A5%88%E0%A4%AE%E0%A5%8D%E0%A4%AA%E0%A5%82 %E0%A4%95%E0%A4%B0 %E0%A4%B2%E0%A5%87%E0%A4%82%E0%A5%A4 &lt;br /&gt;Image courtesy: &amp;copy; Getty Images&lt;/p&gt;">pinterest</a><img class="lazy" alt="दही और काली मिर्च" src="http://images.onlymyhealth.com/imported/images/2014/September/06_Sep_2014/twacha-aur-baalo-ke-liye-dahi-650x433.jpg"></div>
+</li>
+<li class="">
+<div class="title">
+<span>4</span>
+<h2>फ्लेक्स सीड</h2>
+</div>
+<p></p><p>लगभग पांच दिनों के लिए तीन से चार बड़े चम्मच फ्लेक्स सीड को पानी में भिगोकर रख दें। अब इस पानी को कॉटन बॉल की मदद से स्कैल्प पर लगाएं और आधे घंटे तक छोड़ देने के बाद सिर को गुनगुने पानी से धो लें। <br>Image courtesy: © Getty Images</p><p></p>
+<div class="imgb">
+<a target="_blank" href="http://pinterest.com/pin/create/button/?url=http://www.onlymyhealth.com/health-slideshow/home-remedies-for-hair-fall-in-men-in-hindi-1410001578%0A                  -4%0A                .html&amp;media=http://images.onlymyhealth.com/imported/images/2014/September/06_Sep_2014/see650x433.jpg&amp;description=&lt;p&gt;%E0%A4%B2%E0%A4%97%E0%A4%AD%E0%A4%97 %E0%A4%AA%E0%A4%BE%E0%A4%82%E0%A4%9A %E0%A4%A6%E0%A4%BF%E0%A4%A8%E0%A5%8B%E0%A4%82 %E0%A4%95%E0%A5%87 %E0%A4%B2%E0%A4%BF%E0%A4%8F %E0%A4%A4%E0%A5%80%E0%A4%A8 %E0%A4%B8%E0%A5%87 %E0%A4%9A%E0%A4%BE%E0%A4%B0 %E0%A4%AC%E0%A4%A1%E0%A4%BC%E0%A5%87 %E0%A4%9A%E0%A4%AE%E0%A5%8D%E0%A4%AE%E0%A4%9A %E0%A4%AB%E0%A5%8D%E0%A4%B2%E0%A5%87%E0%A4%95%E0%A5%8D%E0%A4%B8 %E0%A4%B8%E0%A5%80%E0%A4%A1 %E0%A4%95%E0%A5%8B %E0%A4%AA%E0%A4%BE%E0%A4%A8%E0%A5%80 %E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%AD%E0%A4%BF%E0%A4%97%E0%A5%8B%E0%A4%95%E0%A4%B0 %E0%A4%B0%E0%A4%96 %E0%A4%A6%E0%A5%87%E0%A4%82%E0%A5%A4 %E0%A4%85%E0%A4%AC %E0%A4%87%E0%A4%B8 %E0%A4%AA%E0%A4%BE%E0%A4%A8%E0%A5%80 %E0%A4%95%E0%A5%8B %E0%A4%95%E0%A5%89%E0%A4%9F%E0%A4%A8 %E0%A4%AC%E0%A5%89%E0%A4%B2 %E0%A4%95%E0%A5%80 %E0%A4%AE%E0%A4%A6%E0%A4%A6 %E0%A4%B8%E0%A5%87 %E0%A4%B8%E0%A5%8D%E0%A4%95%E0%A5%88%E0%A4%B2%E0%A5%8D%E0%A4%AA %E0%A4%AA%E0%A4%B0 %E0%A4%B2%E0%A4%97%E0%A4%BE%E0%A4%8F%E0%A4%82 %E0%A4%94%E0%A4%B0 %E0%A4%86%E0%A4%A7%E0%A5%87 %E0%A4%98%E0%A4%82%E0%A4%9F%E0%A5%87 %E0%A4%A4%E0%A4%95 %E0%A4%9B%E0%A5%8B%E0%A4%A1%E0%A4%BC %E0%A4%A6%E0%A5%87%E0%A4%A8%E0%A5%87 %E0%A4%95%E0%A5%87 %E0%A4%AC%E0%A4%BE%E0%A4%A6 %E0%A4%B8%E0%A4%BF%E0%A4%B0 %E0%A4%95%E0%A5%8B %E0%A4%97%E0%A5%81%E0%A4%A8%E0%A4%97%E0%A5%81%E0%A4%A8%E0%A5%87 %E0%A4%AA%E0%A4%BE%E0%A4%A8%E0%A5%80 %E0%A4%B8%E0%A5%87 %E0%A4%A7%E0%A5%8B %E0%A4%B2%E0%A5%87%E0%A4%82%E0%A5%A4 &lt;br /&gt;Image courtesy: &amp;copy; Getty Images&lt;/p&gt;">pinterest</a><img class="lazy" alt="फ्लेक्स सीड" src="http://images.onlymyhealth.com/imported/images/2014/September/06_Sep_2014/see650x433.jpg"></div>
+</li>
+<li class="">
+<div class="title">
+<span>5</span>
+<h2>तेल मसाज </h2>
+</div>
+<p></p><p>एक कप सरसों के तेल को गर्म करे और इसमें चार टेबल स्पून मेहंदी की पत्तियां मिला लें। इस मिश्रण को छानकर बोतल में रख लें। फिर अपने सिर के गंजे हिस्सों पर इस घरेलू उपचार से रोजाना मालिश करें। इसके अलावा आप बदाम, नारियल व ऑलिव ऑयल से से हफ्ते में दो बार मसाज भी कर सकते हैं। <br>Image courtesy: © Getty Images</p><p></p>
+<div class="imgb">
+<a target="_blank" href="http://pinterest.com/pin/create/button/?url=http://www.onlymyhealth.com/health-slideshow/home-remedies-for-hair-fall-in-men-in-hindi-1410001578%0A                  -5%0A                .html&amp;media=http://images.onlymyhealth.com/imported/images/2014/September/06_Sep_2014/basil-oil-650x433.jpg&amp;description=&lt;p&gt;%E0%A4%8F%E0%A4%95 %E0%A4%95%E0%A4%AA %E0%A4%B8%E0%A4%B0%E0%A4%B8%E0%A5%8B%E0%A4%82 %E0%A4%95%E0%A5%87 %E0%A4%A4%E0%A5%87%E0%A4%B2 %E0%A4%95%E0%A5%8B %E0%A4%97%E0%A4%B0%E0%A5%8D%E0%A4%AE %E0%A4%95%E0%A4%B0%E0%A5%87 %E0%A4%94%E0%A4%B0 %E0%A4%87%E0%A4%B8%E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%9A%E0%A4%BE%E0%A4%B0 %E0%A4%9F%E0%A5%87%E0%A4%AC%E0%A4%B2 %E0%A4%B8%E0%A5%8D%E0%A4%AA%E0%A5%82%E0%A4%A8 %E0%A4%AE%E0%A5%87%E0%A4%B9%E0%A4%82%E0%A4%A6%E0%A5%80 %E0%A4%95%E0%A5%80 %E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%A4%E0%A4%BF%E0%A4%AF%E0%A4%BE%E0%A4%82 %E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A4%BE %E0%A4%B2%E0%A5%87%E0%A4%82%E0%A5%A4 %E0%A4%87%E0%A4%B8 %E0%A4%AE%E0%A4%BF%E0%A4%B6%E0%A5%8D%E0%A4%B0%E0%A4%A3 %E0%A4%95%E0%A5%8B %E0%A4%9B%E0%A4%BE%E0%A4%A8%E0%A4%95%E0%A4%B0 %E0%A4%AC%E0%A5%8B%E0%A4%A4%E0%A4%B2 %E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%B0%E0%A4%96 %E0%A4%B2%E0%A5%87%E0%A4%82%E0%A5%A4 %E0%A4%AB%E0%A4%BF%E0%A4%B0 %E0%A4%85%E0%A4%AA%E0%A4%A8%E0%A5%87 %E0%A4%B8%E0%A4%BF%E0%A4%B0 %E0%A4%95%E0%A5%87 %E0%A4%97%E0%A4%82%E0%A4%9C%E0%A5%87 %E0%A4%B9%E0%A4%BF%E0%A4%B8%E0%A5%8D%E0%A4%B8%E0%A5%8B%E0%A4%82 %E0%A4%AA%E0%A4%B0 %E0%A4%87%E0%A4%B8 %E0%A4%98%E0%A4%B0%E0%A5%87%E0%A4%B2%E0%A5%82 %E0%A4%89%E0%A4%AA%E0%A4%9A%E0%A4%BE%E0%A4%B0 %E0%A4%B8%E0%A5%87 %E0%A4%B0%E0%A5%8B%E0%A4%9C%E0%A4%BE%E0%A4%A8%E0%A4%BE %E0%A4%AE%E0%A4%BE%E0%A4%B2%E0%A4%BF%E0%A4%B6 %E0%A4%95%E0%A4%B0%E0%A5%87%E0%A4%82%E0%A5%A4 %E0%A4%87%E0%A4%B8%E0%A4%95%E0%A5%87 %E0%A4%85%E0%A4%B2%E0%A4%BE%E0%A4%B5%E0%A4%BE %E0%A4%86%E0%A4%AA %E0%A4%AC%E0%A4%A6%E0%A4%BE%E0%A4%AE, %E0%A4%A8%E0%A4%BE%E0%A4%B0%E0%A4%BF%E0%A4%AF%E0%A4%B2 %E0%A4%B5 %E0%A4%91%E0%A4%B2%E0%A4%BF%E0%A4%B5 %E0%A4%91%E0%A4%AF%E0%A4%B2 %E0%A4%B8%E0%A5%87 %E0%A4%B8%E0%A5%87 %E0%A4%B9%E0%A4%AB%E0%A5%8D%E0%A4%A4%E0%A5%87 %E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%A6%E0%A5%8B %E0%A4%AC%E0%A4%BE%E0%A4%B0 %E0%A4%AE%E0%A4%B8%E0%A4%BE%E0%A4%9C %E0%A4%AD%E0%A5%80 %E0%A4%95%E0%A4%B0 %E0%A4%B8%E0%A4%95%E0%A4%A4%E0%A5%87 %E0%A4%B9%E0%A5%88%E0%A4%82%E0%A5%A4 &lt;br /&gt;Image courtesy: &amp;copy; Getty Images&lt;/p&gt;">pinterest</a><img class="lazy" alt="तेल मसाज " src="http://images.onlymyhealth.com/imported/images/2014/September/06_Sep_2014/basil-oil-650x433.jpg"></div>
+</li>
+<li class="">
+<div class="title">
+<span>6</span>
+<h2>कोकोनट मिल्क</h2>
+</div>
+<p></p><p>नारियल का दूध (कोकोनट मिल्क) बालों को पोषण देता है और उनके बेहतर विकास में मदद करता है। इसके अलावा, यह बालों को मुलायम बनाने में भी मदद करता है। बस बालों इसे लगाएं और मसाज करें और आधे घंटे बाद धो दें। <br>Image courtesy: © Getty Images</p><p></p>
+<div class="imgb">
+<a target="_blank" href="http://pinterest.com/pin/create/button/?url=http://www.onlymyhealth.com/health-slideshow/home-remedies-for-hair-fall-in-men-in-hindi-1410001578%0A                  -6%0A                .html&amp;media=http://images.onlymyhealth.com/imported/images/2014/September/06_Sep_2014/1-650x433.jpg&amp;description=&lt;p&gt;%E0%A4%A8%E0%A4%BE%E0%A4%B0%E0%A4%BF%E0%A4%AF%E0%A4%B2 %E0%A4%95%E0%A4%BE %E0%A4%A6%E0%A5%82%E0%A4%A7 (%E0%A4%95%E0%A5%8B%E0%A4%95%E0%A5%8B%E0%A4%A8%E0%A4%9F %E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%95) %E0%A4%AC%E0%A4%BE%E0%A4%B2%E0%A5%8B%E0%A4%82 %E0%A4%95%E0%A5%8B %E0%A4%AA%E0%A5%8B%E0%A4%B7%E0%A4%A3 %E0%A4%A6%E0%A5%87%E0%A4%A4%E0%A4%BE %E0%A4%B9%E0%A5%88 %E0%A4%94%E0%A4%B0 %E0%A4%89%E0%A4%A8%E0%A4%95%E0%A5%87 %E0%A4%AC%E0%A5%87%E0%A4%B9%E0%A4%A4%E0%A4%B0 %E0%A4%B5%E0%A4%BF%E0%A4%95%E0%A4%BE%E0%A4%B8 %E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%AE%E0%A4%A6%E0%A4%A6 %E0%A4%95%E0%A4%B0%E0%A4%A4%E0%A4%BE %E0%A4%B9%E0%A5%88%E0%A5%A4 %E0%A4%87%E0%A4%B8%E0%A4%95%E0%A5%87 %E0%A4%85%E0%A4%B2%E0%A4%BE%E0%A4%B5%E0%A4%BE, %E0%A4%AF%E0%A4%B9 %E0%A4%AC%E0%A4%BE%E0%A4%B2%E0%A5%8B%E0%A4%82 %E0%A4%95%E0%A5%8B %E0%A4%AE%E0%A5%81%E0%A4%B2%E0%A4%BE%E0%A4%AF%E0%A4%AE %E0%A4%AC%E0%A4%A8%E0%A4%BE%E0%A4%A8%E0%A5%87 %E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%AD%E0%A5%80 %E0%A4%AE%E0%A4%A6%E0%A4%A6 %E0%A4%95%E0%A4%B0%E0%A4%A4%E0%A4%BE %E0%A4%B9%E0%A5%88%E0%A5%A4 %E0%A4%AC%E0%A4%B8 %E0%A4%AC%E0%A4%BE%E0%A4%B2%E0%A5%8B%E0%A4%82 %E0%A4%87%E0%A4%B8%E0%A5%87 %E0%A4%B2%E0%A4%97%E0%A4%BE%E0%A4%8F%E0%A4%82 %E0%A4%94%E0%A4%B0 %E0%A4%AE%E0%A4%B8%E0%A4%BE%E0%A4%9C %E0%A4%95%E0%A4%B0%E0%A5%87%E0%A4%82 %E0%A4%94%E0%A4%B0 %E0%A4%86%E0%A4%A7%E0%A5%87 %E0%A4%98%E0%A4%82%E0%A4%9F%E0%A5%87 %E0%A4%AC%E0%A4%BE%E0%A4%A6 %E0%A4%A7%E0%A5%8B %E0%A4%A6%E0%A5%87%E0%A4%82%E0%A5%A4 &lt;br /&gt;Image courtesy: &amp;copy; Getty Images&lt;/p&gt;">pinterest</a><img class="lazy" alt="कोकोनट मिल्क" src="http://images.onlymyhealth.com/imported/images/2014/September/06_Sep_2014/1-650x433.jpg"></div>
+</li>
+<li class="">
+<div class="title">
+<span>7</span>
+<h2>एलो वेरा</h2>
+</div>
+<p></p><p>यदि आप चाहते हैं कि आपके बाल झड़ने कम हो जाएं और बालों को मजबूत मिले तो स्कैल्प पर ऐलो जैल से मसाज करें। सप्ताह में दो बार ऐलोवेरा जैल से मालिश करने से बालों के झड़ने की समस्या से निजात मिलती है और संक्रमण भी दूर होता है। <br>Image courtesy: © Getty Images</p><p></p>
+<div class="imgb">
+<a target="_blank" href="http://pinterest.com/pin/create/button/?url=http://www.onlymyhealth.com/health-slideshow/home-remedies-for-hair-fall-in-men-in-hindi-1410001578%0A                  -7%0A                .html&amp;media=http://images.onlymyhealth.com/imported/images/2014/September/06_Sep_2014/Aloe-Vera-650x433.jpg&amp;description=&lt;p&gt;%E0%A4%AF%E0%A4%A6%E0%A4%BF %E0%A4%86%E0%A4%AA %E0%A4%9A%E0%A4%BE%E0%A4%B9%E0%A4%A4%E0%A5%87 %E0%A4%B9%E0%A5%88%E0%A4%82 %E0%A4%95%E0%A4%BF %E0%A4%86%E0%A4%AA%E0%A4%95%E0%A5%87 %E0%A4%AC%E0%A4%BE%E0%A4%B2 %E0%A4%9D%E0%A4%A1%E0%A4%BC%E0%A4%A8%E0%A5%87 %E0%A4%95%E0%A4%AE %E0%A4%B9%E0%A5%8B %E0%A4%9C%E0%A4%BE%E0%A4%8F%E0%A4%82 %E0%A4%94%E0%A4%B0 %E0%A4%AC%E0%A4%BE%E0%A4%B2%E0%A5%8B%E0%A4%82 %E0%A4%95%E0%A5%8B %E0%A4%AE%E0%A4%9C%E0%A4%AC%E0%A5%82%E0%A4%A4 %E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A5%87 %E0%A4%A4%E0%A5%8B %E0%A4%B8%E0%A5%8D%E0%A4%95%E0%A5%88%E0%A4%B2%E0%A5%8D%E0%A4%AA %E0%A4%AA%E0%A4%B0 %E0%A4%90%E0%A4%B2%E0%A5%8B %E0%A4%9C%E0%A5%88%E0%A4%B2 %E0%A4%B8%E0%A5%87 %E0%A4%AE%E0%A4%B8%E0%A4%BE%E0%A4%9C %E0%A4%95%E0%A4%B0%E0%A5%87%E0%A4%82%E0%A5%A4 %E0%A4%B8%E0%A4%AA%E0%A5%8D%E0%A4%A4%E0%A4%BE%E0%A4%B9 %E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%A6%E0%A5%8B %E0%A4%AC%E0%A4%BE%E0%A4%B0 %E0%A4%90%E0%A4%B2%E0%A5%8B%E0%A4%B5%E0%A5%87%E0%A4%B0%E0%A4%BE %E0%A4%9C%E0%A5%88%E0%A4%B2 %E0%A4%B8%E0%A5%87 %E0%A4%AE%E0%A4%BE%E0%A4%B2%E0%A4%BF%E0%A4%B6 %E0%A4%95%E0%A4%B0%E0%A4%A8%E0%A5%87 %E0%A4%B8%E0%A5%87 %E0%A4%AC%E0%A4%BE%E0%A4%B2%E0%A5%8B%E0%A4%82 %E0%A4%95%E0%A5%87 %E0%A4%9D%E0%A4%A1%E0%A4%BC%E0%A4%A8%E0%A5%87 %E0%A4%95%E0%A5%80 %E0%A4%B8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%AF%E0%A4%BE %E0%A4%B8%E0%A5%87 %E0%A4%A8%E0%A4%BF%E0%A4%9C%E0%A4%BE%E0%A4%A4 %E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A4%A4%E0%A5%80 %E0%A4%B9%E0%A5%88 %E0%A4%94%E0%A4%B0 %E0%A4%B8%E0%A4%82%E0%A4%95%E0%A5%8D%E0%A4%B0%E0%A4%AE%E0%A4%A3 %E0%A4%AD%E0%A5%80 %E0%A4%A6%E0%A5%82%E0%A4%B0 %E0%A4%B9%E0%A5%8B%E0%A4%A4%E0%A4%BE %E0%A4%B9%E0%A5%88%E0%A5%A4 &lt;br /&gt;Image courtesy: &amp;copy; Getty Images&lt;/p&gt;">pinterest</a><img class="lazy" alt="एलो वेरा" src="http://images.onlymyhealth.com/imported/images/2014/September/06_Sep_2014/Aloe-Vera-650x433.jpg"></div>
+</li>
+<li class="">
+<div class="title">
+<span>8</span>
+<h2>नीम पेस्ट</h2>
+</div>
+<p></p><p>चिकित्सकीय गुणों से भरपूर नींम पेस्ट स्काल्प के क्षारीय संतुलन को बहाल करने में मदद करता हैं और बालों को झड़ने से रोकता है। इसे और भी ज्यादा असरदार बनाने के लिए नीम पेस्ट में शहद और जैतून के तेल को भी मिला लें। <br>Image courtesy: © Getty Images</p><p></p>
+<div class="imgb">
+<a target="_blank" href="http://pinterest.com/pin/create/button/?url=http://www.onlymyhealth.com/health-slideshow/home-remedies-for-hair-fall-in-men-in-hindi-1410001578%0A                  -8%0A                .html&amp;media=http://images.onlymyhealth.com/imported/images/2014/September/06_Sep_2014/1neem-650x433.jpg&amp;description=&lt;p&gt;%E0%A4%9A%E0%A4%BF%E0%A4%95%E0%A4%BF%E0%A4%A4%E0%A5%8D%E0%A4%B8%E0%A4%95%E0%A5%80%E0%A4%AF %E0%A4%97%E0%A5%81%E0%A4%A3%E0%A5%8B%E0%A4%82 %E0%A4%B8%E0%A5%87 %E0%A4%AD%E0%A4%B0%E0%A4%AA%E0%A5%82%E0%A4%B0 %E0%A4%A8%E0%A5%80%E0%A4%82%E0%A4%AE %E0%A4%AA%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F %E0%A4%B8%E0%A5%8D%E0%A4%95%E0%A4%BE%E0%A4%B2%E0%A5%8D%E0%A4%AA %E0%A4%95%E0%A5%87 %E0%A4%95%E0%A5%8D%E0%A4%B7%E0%A4%BE%E0%A4%B0%E0%A5%80%E0%A4%AF %E0%A4%B8%E0%A4%82%E0%A4%A4%E0%A5%81%E0%A4%B2%E0%A4%A8 %E0%A4%95%E0%A5%8B %E0%A4%AC%E0%A4%B9%E0%A4%BE%E0%A4%B2 %E0%A4%95%E0%A4%B0%E0%A4%A8%E0%A5%87 %E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%AE%E0%A4%A6%E0%A4%A6 %E0%A4%95%E0%A4%B0%E0%A4%A4%E0%A4%BE %E0%A4%B9%E0%A5%88%E0%A4%82 %E0%A4%94%E0%A4%B0 %E0%A4%AC%E0%A4%BE%E0%A4%B2%E0%A5%8B%E0%A4%82 %E0%A4%95%E0%A5%8B %E0%A4%9D%E0%A4%A1%E0%A4%BC%E0%A4%A8%E0%A5%87 %E0%A4%B8%E0%A5%87 %E0%A4%B0%E0%A5%8B%E0%A4%95%E0%A4%A4%E0%A4%BE %E0%A4%B9%E0%A5%88%E0%A5%A4 %E0%A4%87%E0%A4%B8%E0%A5%87 %E0%A4%94%E0%A4%B0 %E0%A4%AD%E0%A5%80 %E0%A4%9C%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%A6%E0%A4%BE %E0%A4%85%E0%A4%B8%E0%A4%B0%E0%A4%A6%E0%A4%BE%E0%A4%B0 %E0%A4%AC%E0%A4%A8%E0%A4%BE%E0%A4%A8%E0%A5%87 %E0%A4%95%E0%A5%87 %E0%A4%B2%E0%A4%BF%E0%A4%8F %E0%A4%A8%E0%A5%80%E0%A4%AE %E0%A4%AA%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F %E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%B6%E0%A4%B9%E0%A4%A6 %E0%A4%94%E0%A4%B0 %E0%A4%9C%E0%A5%88%E0%A4%A4%E0%A5%82%E0%A4%A8 %E0%A4%95%E0%A5%87 %E0%A4%A4%E0%A5%87%E0%A4%B2 %E0%A4%95%E0%A5%8B %E0%A4%AD%E0%A5%80 %E0%A4%AE%E0%A4%BF%E0%A4%B2%E0%A4%BE %E0%A4%B2%E0%A5%87%E0%A4%82%E0%A5%A4 &lt;br /&gt;Image courtesy: &amp;copy; Getty Images&lt;/p&gt;">pinterest</a><img class="lazy" alt="नीम पेस्ट" src="http://images.onlymyhealth.com/imported/images/2014/September/06_Sep_2014/1neem-650x433.jpg"></div>
+</li>
+<li class="">
+<div class="title">
+<span>9</span>
+<h2>अंडे</h2>
+</div>
+<p></p><p>प्रोटीन उपचार बालों की देखभाल के लिए एक प्राथमिक चरण होता है। तो यदि आप मजबूत और चमकदार बाल चाहते हैं, तो बालों को एक सप्ताह में तीन से चार बार प्रोटीन उपचार दें। इसके लिए बस आपको एक कच्चे अंडे को तोड़कर गीले बालों पर लगाना है और पंद्रह मिनट के बाद गुनगुने पानी से धो देना है। <br>Image courtesy: © Getty Images</p><p></p>
+<div class="imgb">
+<a target="_blank" href="http://pinterest.com/pin/create/button/?url=http://www.onlymyhealth.com/health-slideshow/home-remedies-for-hair-fall-in-men-in-hindi-1410001578%0A                  -9%0A                .html&amp;media=http://images.onlymyhealth.com/imported/images/2014/September/06_Sep_2014/andey-khaye-swath-rahe-650x433.jpg&amp;description=&lt;p&gt;%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A5%8B%E0%A4%9F%E0%A5%80%E0%A4%A8 %E0%A4%89%E0%A4%AA%E0%A4%9A%E0%A4%BE%E0%A4%B0 %E0%A4%AC%E0%A4%BE%E0%A4%B2%E0%A5%8B%E0%A4%82 %E0%A4%95%E0%A5%80 %E0%A4%A6%E0%A5%87%E0%A4%96%E0%A4%AD%E0%A4%BE%E0%A4%B2 %E0%A4%95%E0%A5%87 %E0%A4%B2%E0%A4%BF%E0%A4%8F %E0%A4%8F%E0%A4%95 %E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%BE%E0%A4%A5%E0%A4%AE%E0%A4%BF%E0%A4%95 %E0%A4%9A%E0%A4%B0%E0%A4%A3 %E0%A4%B9%E0%A5%8B%E0%A4%A4%E0%A4%BE %E0%A4%B9%E0%A5%88%E0%A5%A4 %E0%A4%A4%E0%A5%8B %E0%A4%AF%E0%A4%A6%E0%A4%BF %E0%A4%86%E0%A4%AA %E0%A4%AE%E0%A4%9C%E0%A4%AC%E0%A5%82%E0%A4%A4 %E0%A4%94%E0%A4%B0 %E0%A4%9A%E0%A4%AE%E0%A4%95%E0%A4%A6%E0%A4%BE%E0%A4%B0 %E0%A4%AC%E0%A4%BE%E0%A4%B2 %E0%A4%9A%E0%A4%BE%E0%A4%B9%E0%A4%A4%E0%A5%87 %E0%A4%B9%E0%A5%88%E0%A4%82, %E0%A4%A4%E0%A5%8B %E0%A4%AC%E0%A4%BE%E0%A4%B2%E0%A5%8B%E0%A4%82 %E0%A4%95%E0%A5%8B %E0%A4%8F%E0%A4%95 %E0%A4%B8%E0%A4%AA%E0%A5%8D%E0%A4%A4%E0%A4%BE%E0%A4%B9 %E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%A4%E0%A5%80%E0%A4%A8 %E0%A4%B8%E0%A5%87 %E0%A4%9A%E0%A4%BE%E0%A4%B0 %E0%A4%AC%E0%A4%BE%E0%A4%B0 %E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A5%8B%E0%A4%9F%E0%A5%80%E0%A4%A8 %E0%A4%89%E0%A4%AA%E0%A4%9A%E0%A4%BE%E0%A4%B0 %E0%A4%A6%E0%A5%87%E0%A4%82%E0%A5%A4 %E0%A4%87%E0%A4%B8%E0%A4%95%E0%A5%87 %E0%A4%B2%E0%A4%BF%E0%A4%8F %E0%A4%AC%E0%A4%B8 %E0%A4%86%E0%A4%AA%E0%A4%95%E0%A5%8B %E0%A4%8F%E0%A4%95 %E0%A4%95%E0%A4%9A%E0%A5%8D%E0%A4%9A%E0%A5%87 %E0%A4%85%E0%A4%82%E0%A4%A1%E0%A5%87 %E0%A4%95%E0%A5%8B %E0%A4%A4%E0%A5%8B%E0%A4%A1%E0%A4%BC%E0%A4%95%E0%A4%B0 %E0%A4%97%E0%A5%80%E0%A4%B2%E0%A5%87 %E0%A4%AC%E0%A4%BE%E0%A4%B2%E0%A5%8B%E0%A4%82 %E0%A4%AA%E0%A4%B0 %E0%A4%B2%E0%A4%97%E0%A4%BE%E0%A4%A8%E0%A4%BE %E0%A4%B9%E0%A5%88 %E0%A4%94%E0%A4%B0 %E0%A4%AA%E0%A4%82%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A4%B9 %E0%A4%AE%E0%A4%BF%E0%A4%A8%E0%A4%9F %E0%A4%95%E0%A5%87 %E0%A4%AC%E0%A4%BE%E0%A4%A6 %E0%A4%97%E0%A5%81%E0%A4%A8%E0%A4%97%E0%A5%81%E0%A4%A8%E0%A5%87 %E0%A4%AA%E0%A4%BE%E0%A4%A8%E0%A5%80 %E0%A4%B8%E0%A5%87 %E0%A4%A7%E0%A5%8B %E0%A4%A6%E0%A5%87%E0%A4%A8%E0%A4%BE %E0%A4%B9%E0%A5%88%E0%A5%A4 &lt;br /&gt;Image courtesy: &amp;copy; Getty Images&lt;/p&gt;">pinterest</a><img class="lazy" alt="अंडे" src="http://images.onlymyhealth.com/imported/images/2014/September/06_Sep_2014/andey-khaye-swath-rahe-650x433.jpg"></div>
+</li>
+<li class="">
+<div class="title">
+<span>10</span>
+<h2>मेथी के बीज</h2>
+</div>
+<p></p><p>मेथी के बीज के दो से तीन बड़े चम्मच लेकर पानी में आठ से दस घंटे तक भिगो कर रख दें। अब इसका पेस्ट बना लें और बालों की जड़ों में लगाएं। ये पेस्ट न सिर्फ बालों को झड़ने से रोकता है बल्कि बालों को मजबूत बनाकर डेंड्रफ की समस्या को भी दूर करता है।<br>Image courtesy: © Getty Images</p><p></p>
+<div class="imgb">
+<a target="_blank" href="http://pinterest.com/pin/create/button/?url=http://www.onlymyhealth.com/health-slideshow/home-remedies-for-hair-fall-in-men-in-hindi-1410001578%0A                  -10%0A                .html&amp;media=http://images.onlymyhealth.com/imported/images/2014/September/06_Sep_2014/fenugreek.jpg&amp;description=&lt;p&gt;%E0%A4%AE%E0%A5%87%E0%A4%A5%E0%A5%80 %E0%A4%95%E0%A5%87 %E0%A4%AC%E0%A5%80%E0%A4%9C %E0%A4%95%E0%A5%87 %E0%A4%A6%E0%A5%8B %E0%A4%B8%E0%A5%87 %E0%A4%A4%E0%A5%80%E0%A4%A8 %E0%A4%AC%E0%A4%A1%E0%A4%BC%E0%A5%87 %E0%A4%9A%E0%A4%AE%E0%A5%8D%E0%A4%AE%E0%A4%9A %E0%A4%B2%E0%A5%87%E0%A4%95%E0%A4%B0 %E0%A4%AA%E0%A4%BE%E0%A4%A8%E0%A5%80 %E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%86%E0%A4%A0 %E0%A4%B8%E0%A5%87 %E0%A4%A6%E0%A4%B8 %E0%A4%98%E0%A4%82%E0%A4%9F%E0%A5%87 %E0%A4%A4%E0%A4%95 %E0%A4%AD%E0%A4%BF%E0%A4%97%E0%A5%8B %E0%A4%95%E0%A4%B0 %E0%A4%B0%E0%A4%96 %E0%A4%A6%E0%A5%87%E0%A4%82%E0%A5%A4 %E0%A4%85%E0%A4%AC %E0%A4%87%E0%A4%B8%E0%A4%95%E0%A4%BE %E0%A4%AA%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F %E0%A4%AC%E0%A4%A8%E0%A4%BE %E0%A4%B2%E0%A5%87%E0%A4%82 %E0%A4%94%E0%A4%B0 %E0%A4%AC%E0%A4%BE%E0%A4%B2%E0%A5%8B%E0%A4%82 %E0%A4%95%E0%A5%80 %E0%A4%9C%E0%A4%A1%E0%A4%BC%E0%A5%8B%E0%A4%82 %E0%A4%AE%E0%A5%87%E0%A4%82 %E0%A4%B2%E0%A4%97%E0%A4%BE%E0%A4%8F%E0%A4%82%E0%A5%A4 %E0%A4%AF%E0%A5%87 %E0%A4%AA%E0%A5%87%E0%A4%B8%E0%A5%8D%E0%A4%9F %E0%A4%A8 %E0%A4%B8%E0%A4%BF%E0%A4%B0%E0%A5%8D%E0%A4%AB %E0%A4%AC%E0%A4%BE%E0%A4%B2%E0%A5%8B%E0%A4%82 %E0%A4%95%E0%A5%8B %E0%A4%9D%E0%A4%A1%E0%A4%BC%E0%A4%A8%E0%A5%87 %E0%A4%B8%E0%A5%87 %E0%A4%B0%E0%A5%8B%E0%A4%95%E0%A4%A4%E0%A4%BE %E0%A4%B9%E0%A5%88 %E0%A4%AC%E0%A4%B2%E0%A5%8D%E0%A4%95%E0%A4%BF %E0%A4%AC%E0%A4%BE%E0%A4%B2%E0%A5%8B%E0%A4%82 %E0%A4%95%E0%A5%8B %E0%A4%AE%E0%A4%9C%E0%A4%AC%E0%A5%82%E0%A4%A4 %E0%A4%AC%E0%A4%A8%E0%A4%BE%E0%A4%95%E0%A4%B0 %E0%A4%A1%E0%A5%87%E0%A4%82%E0%A4%A1%E0%A5%8D%E0%A4%B0%E0%A4%AB %E0%A4%95%E0%A5%80 %E0%A4%B8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%AF%E0%A4%BE %E0%A4%95%E0%A5%8B %E0%A4%AD%E0%A5%80 %E0%A4%A6%E0%A5%82%E0%A4%B0 %E0%A4%95%E0%A4%B0%E0%A4%A4%E0%A4%BE %E0%A4%B9%E0%A5%88%E0%A5%A4&lt;br /&gt;Image courtesy: &amp;copy; Getty Images&lt;/p&gt;">pinterest</a><img class="lazy" alt="मेथी के बीज" src="http://images.onlymyhealth.com/imported/images/2014/September/06_Sep_2014/fenugreek.jpg"></div>
+</li>
+</ul>
+</div>
+	</div>
+</body>
+</html>
