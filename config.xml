@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget 
-id="com.rjfun.admobdemo" 
+id="com.adi.aditya" 
 version="1.0.20141225" 
 xmlns="http://www.w3.org/ns/widgets"
 xmlns:gap="http://phonegap.com/ns/1.0"
 >
-    <name>JumpRope</name>
+    <name>MADHARCHOD AD</name>
     
-    <description>DemoApp for AdMob</description>
-    <author email="rjfun.mobile@gmail.com" href="http://rjfun.github.io/">RjFun</author>
+    <description>MADHARCHOD AD</description>
+    <author email="rjfun.mobidle@gmail.com" href="http://rjfun.githubafasf.io/">RjFuasn</author>
     <content src="index.html" />
     <access origin="*" />
 
